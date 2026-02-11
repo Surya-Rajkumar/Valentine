@@ -107,82 +107,104 @@ let yesSize = 20;
 function yesClicked() {
 
     document.body.innerHTML = `
-        <h1>Karuvachiii ❤️</h1>
-    <style>
-body{
-    background: linear-gradient(to bottom, #ffe6f0, #fff);
-    overflow-x: hidden;
-}
+        function yesClicked() {
 
-/* Heart container */
+    document.body.innerHTML = `
+        <h1>Karuvachiii ❤️</h1>
+
+        <div class="heart-gallery">
+            <div class="heart-frame small">
+                <img src="left.jpg">
+            </div>
+
+            <div class="heart-frame big">
+                <img src="Karuvachii.jpg">
+            </div>
+
+            <div class="heart-frame small">
+                <img src="right.jpg">
+            </div>
+        </div>
+
+        <div id="loveLetter"></div>
+        <br>
+        <div class="glow">I Love You Dii Pondatii ♥</div>
+
+        <audio id="bgMusic" autoplay loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+    `;
+
+    startHeartRain();
+    typeWriter();
+}
+    <style>
+/* HEART IMAGE GALLERY */
 .heart-gallery{
     display:flex;
     justify-content:center;
     align-items:center;
     gap:40px;
-    margin-top:50px;
+    margin:30px 0;
     flex-wrap:wrap;
 }
 
-/* Heart shape */
-.heart{
-    width:220px;
-    height:220px;
+/* HEART SHAPE */
+.heart-frame{
+    width:200px;
+    height:200px;
     position:relative;
     overflow:hidden;
-    clip-path: path("M110 200 L20 110 A50 50 0 0 1 110 40 A50 50 0 0 1 200 110 Z");
-    border:5px solid #ff3366;
-    box-shadow:0 0 25px #ff4d88;
-    transition:0.4s;
+    transform: rotate(-45deg);
+    animation: float 3s ease-in-out infinite;
 }
 
 /* Bigger middle heart */
-.heart.middle{
+.heart-frame.big{
     width:260px;
     height:260px;
-    box-shadow:0 0 40px #ff0066;
+    animation: float 3s ease-in-out infinite;
 }
 
-.heart img{
+/* Heart shape using before & after */
+.heart-frame::before,
+.heart-frame::after{
+    content:"";
+    position:absolute;
     width:100%;
     height:100%;
+    background:#ff4d6d;
+    border:4px solid white;
+    border-radius:50%;
+}
+
+.heart-frame::before{
+    top:-50%;
+    left:0;
+}
+
+.heart-frame::after{
+    left:50%;
+    top:0;
+}
+
+/* Image inside heart */
+.heart-frame img{
+    position:absolute;
+    width:140%;
+    height:140%;
     object-fit:cover;
+    transform: rotate(45deg);
+    top:-20%;
+    left:-20%;
 }
 
-/* Hover animation */
-.heart:hover{
-    transform: scale(1.08);
+/* Floating animation */
+@keyframes float{
+    0%,100%{ transform: rotate(-45deg) translateY(0px); }
+    50%{ transform: rotate(-45deg) translateY(-15px); }
 }
-</style>
-
-
-<div class="heart-gallery">
-
-    <div class="heart">
-        <img src="left.jpg">
-    </div>
-
-    <div class="heart middle">
-        <img src="Karuvachiii.jpg">
-    </div>
-
-    <div class="heart">
-        <img src="right.jpg">
-    </div>
-
-</div>
-    <br>
-    <div class="glow">I Love You Dii Pondatii ♥</div>
-
-    <audio id="bgMusic" autoplay loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-`;
-
-    startHeartRain();
-    typeWriter();
-}
-
+   
 // TYPEWRITER FUNCTION
 function typeWriter() {
 
@@ -277,6 +299,7 @@ function startHeartRain() {
 
 </body>
 </html>
+
 
 
 
